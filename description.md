@@ -120,6 +120,9 @@ Write a byte to the i2c bus. Takes as a parameter the byte to be sent. Returns *
 #### *uint8_t read_byte(i2c_receive_response_t send_ack);*
 Read a byte from the i2c deice. Returns the read byte. Take as a paramenter if ACK is to be sent or not.
 
+#### *uint8_t status (void);*
+For devices with TWI hardware will return the status TWI status. For devices with USI will return true.
+
 In order to communicate to an i2c device, first start a session, then read/write bytes and after that close the session. 
 ```
 Example:

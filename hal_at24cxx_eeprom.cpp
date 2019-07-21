@@ -1,15 +1,16 @@
 #include <stdint.h>
-#include "hal_at24c0x_eeprom.h"
+#include <util/delay.h>
+#include "hal_at24cxx_eeprom.h"
 
 
-c_at24c0x_eeprom::c_at24c0x_eeprom(c_i2c & ref_i2c, uint8_t i2c_address, chip_type_t type) :
+c_at24cxx_eeprom::c_at24cxx_eeprom(c_i2c & ref_i2c, uint8_t i2c_address, chip_type_t type) :
                                    r_i2c(ref_i2c), chip_address(i2c_address), chip_type(type)
 {
 
 }
 
 
-uint8_t c_at24c0x_eeprom::i2c_address(uint16_t address)
+uint8_t c_at24cxx_eeprom::i2c_address(uint16_t address)
 {
     uint8_t tmp_address = 0x00u;
 
@@ -29,6 +30,8 @@ uint8_t c_at24c0x_eeprom::i2c_address(uint16_t address)
 
         case AT24C01:
         case AT24C02:
+        case AT24C32:
+        case AT24C64:
         default:            
             tmp_address = chip_address & 0x00FFu;
         break;
@@ -38,30 +41,42 @@ uint8_t c_at24c0x_eeprom::i2c_address(uint16_t address)
 }
 
 
-uint8_t c_at24c0x_eeprom::read_byte(uint16_t address)
+uint8_t c_at24cxx_eeprom::read_byte(uint16_t address)
 {
     uint8_t result = 0x00u;
 
     r_i2c.start_write(i2c_address(address));
-    r_i2c.write_byte(address & 0x00FFu);
+
+    if ((AT24C32 == chip_type) || (AT24C64 == chip_type))
+    {
+        r_i2c.write_byte((address & 0x1F00u) >> 8u);
+    }
+
+    r_i2c.write_byte(address & 0x00FFu);    
     r_i2c.start_read(i2c_address(address));
-    result = r_i2c.read_byte(c_i2c::NO_ACK);
+    result = r_i2c.read_byte(c_i2c::NACK);
     r_i2c.stop();
 
     return result;
 }
 
 
-void c_at24c0x_eeprom::write_byte(uint16_t address, uint8_t byte)
+void c_at24cxx_eeprom::write_byte(uint16_t address, uint8_t byte)
 {
     r_i2c.start_write(i2c_address(address));
+
+    if ((AT24C32 == chip_type) || (AT24C64 == chip_type))
+    {
+        r_i2c.write_byte((address & 0x1F00u) >> 8u);
+    }
+
     r_i2c.write_byte(address & 0x00FFu);
     r_i2c.write_byte(byte);
     r_i2c.stop();
 }
 
 
-void c_at24c0x_eeprom::read_block(uint8_t * const block, uint16_t address, uint16_t size)
+void c_at24cxx_eeprom::read_block(uint8_t * const block, uint16_t address, uint16_t size)
 {
     for (uint16_t index = 0; index < size; index++)
     {
@@ -70,10 +85,12 @@ void c_at24c0x_eeprom::read_block(uint8_t * const block, uint16_t address, uint1
 }
 
 
-void c_at24c0x_eeprom::write_block(uint8_t const * const block, uint16_t address, uint16_t size)
+void c_at24cxx_eeprom::write_block(uint8_t const * const block, uint16_t address, uint16_t size)
 {
     for (uint16_t index = 0; index < size; index++)
     {
         write_byte((address + index), *(block + index));
+        // Give the EEPROM chip time to store the byte.
+        _delay_ms(5);
     }
 }

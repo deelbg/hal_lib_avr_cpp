@@ -92,13 +92,13 @@ class c_io
     };
 
     // List port and pin for the used IO linets. 
-    // Registers for the given IO pin         PORT    PIN
-    const pin_t IO_PIN[NUMBER_OF_IO_PINS] = {{PORT_B, 0u},  // INPUT_RAW
-                                             {PORT_B, 1u},  // INPUT_DEBAUNCED
-                                             {PORT_B, 2u},  // INPUT_ENCODER_A
-                                             {PORT_B, 3u},  // INPUT_ENCODER_B
-                                             {PORT_B, 5u},  // OUTPUT_LED_1
-                                             {PORT_B, 4u}}; // OUTPUT_LED_2
+    // Registers for the given IO pin         PORT    PIN 
+    const pin_t IO_PIN[NUMBER_OF_IO_PINS] = {{PORT_B, 0u},  // INPUT_RAW       - D8
+                                             {PORT_B, 1u},  // INPUT_DEBAUNCED - D9
+                                             {PORT_B, 2u},  // INPUT_ENCODER_A - D10
+                                             {PORT_B, 3u},  // INPUT_ENCODER_B - D11
+                                             {PORT_B, 5u},  // OUTPUT_LED_1    - D13 
+                                             {PORT_B, 4u}}; // OUTPUT_LED_2    - D12 
 
 
 
