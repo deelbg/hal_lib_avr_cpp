@@ -8,7 +8,7 @@ The drivers are intended to be used in projects based on AVR microcontrollers th
 *hal_encoder.h* - Rotary encoder driver.  
 *hal_avr_i2c.h* - i2c driver for microcontrollers with TWI hardware (ATMEGA) or USI hardware (ATTINY).  
 *hal_avr_eeprom.h* - Driver for the internal EEPROM of AVR microcontrollers.  
-*hal_at24cxx_eeprom.h* - Driver for EEPROM chips of the at24 series.  
+*hal_at24cxx_eeprom.h* - Driver for EEPROM chips AT24C01, AT24C02, AT24C04, AT24C08, AT24C16, AT24C32, AT24C64.  
 Complete description of all classes and their public interface is provided in [**description.md**](./description.md). 
 
 ### Examples:  
