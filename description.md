@@ -202,6 +202,8 @@ Constructor, parameters are:
 *`AT24C04`*  
 *`AT24C08`*  
 *`AT24C16`*  
+*`AT24C32`*  
+*`AT24C64`*  
 
 #### *uint8_t read_byte(uint16_t address);*
 Reads a byte from address *`address`* of the EEPROM and returns it.
