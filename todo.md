@@ -5,7 +5,7 @@
 |version 1.00  |DONE |
 |Encoder.  |DONE |
 |Example  |DONE |
-|Document.  | |
+|Document.  |DONE |
 
 
 ### hal_timer.h
@@ -32,7 +32,7 @@
 |try to read an output |DONE | 
 |try to set an input  |DONE |
 |Example.  |DONE |
-|Document.  | |
+|Document.  |DONE |
   
   
 ### hal_eeprom.h
@@ -45,10 +45,10 @@
 |read block  | DONE|
 |write block  |DONE |
 |Example  |DONE |
-|Document.  | |
+|Document.  |DONE |
 
 
-### hal_at24c0x_eeprom.h
+### hal_at24cxx_eeprom.h
 ------------------------------------
 | Task | Status |
 |------|--------|
@@ -59,10 +59,7 @@
 |write block  |DONE | 
 |check and use status byte  |DONE |
 |Example  |DONE |
-|Document.  | |
-| | |
-|version 2.00  | |
-|add AT24C32, AT24C64, AT24C128, AT24C256, AT24C512, AT24C512, AT24CM01, AT24CM02 | |
+|Document.  |DONE |
 
 ### hal_avr_i2c.h
 -----------------------------------
@@ -74,17 +71,7 @@
 |read  |DONE |  
 |check and use status byte  |DONE |
 |Example.  |DONE |
-|Document.  | |
-
-### hal_avr_i2c_usi.h
------------------------------------
-| Task | Status |
-|------|--------|
-|version 1.00  |DONE |
-|init |DONE |
-|write  |DONE |
-|read  |DONE |  
-|Document.  | |
+|Document.  |DONE |
 
 ### hal_avr_spi.h
 -----------------------------------
